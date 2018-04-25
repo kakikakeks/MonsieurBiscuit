@@ -18,10 +18,10 @@ g = safygiphy.Giphy()
 
 
 BOT_PREFIX = ("?","!")
-TOKEN = "NDM4MzA1MTU0OTAzNTcyNDgx.DcCrjg.Nepb-KYFZNN7IxEOOlehxhD9SAI"
-WELCOME_CHANNEL_ID= "438361448679342088"
-CHANNEL_RULES= "<#438361448679342088>"
-REPORT_CHANNEL_ID= "438372634284130305"
+TOKEN = ""
+WELCOME_CHANNEL_ID= ""
+CHANNEL_RULES= "<#>"
+REPORT_CHANNEL_ID= ""
 
 
 client = Bot(command_prefix=BOT_PREFIX)
@@ -204,7 +204,7 @@ async def warn(ctx, userName: discord.User):
 @client.event
 async def on_ready():
 
-    await client.change_presence(game=Game(name="mit Keksen"))
+    await client.change_presence(game=Game(name="with cookies"))
 
     print('Eingeloggt als')
     print(client.user.name)
