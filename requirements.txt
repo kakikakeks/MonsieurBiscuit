@@ -3,7 +3,7 @@ discord.py
 safygiphy
 requests
 asyncio
-io
+
 
 # If you need to specify a version
 #requests==3.6
