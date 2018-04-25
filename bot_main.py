@@ -136,9 +136,9 @@ async def on_message(message):
 
 
     if 'keks' in message.content:
-        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand :kakikaKeks: gesagt?")
+        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand <:kakikaKeks:438543579351351296> gesagt?")
     if 'cookie' in message.content:
-        await client.send_message (message.channel, ":thinking: Did anyone say :kakikaKeks: ?")
+        await client.send_message (message.channel, ":thinking: Did anyone say <:kakikaKeks:438543579351351296> ?")
     await client.process_commands(message)
 
 
