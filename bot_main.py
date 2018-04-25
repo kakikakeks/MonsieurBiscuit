@@ -149,7 +149,7 @@ async def on_message(message):
         await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
 
 
-    if message.content.lower ().startswith ("Vote"):
+    if message.content.startswith("vote"):
 
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
