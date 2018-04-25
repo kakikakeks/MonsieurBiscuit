@@ -147,7 +147,7 @@ async def on_message(message):
         await client.send_message (message.channel, ":thinking: Hat hier etwa jemand 🍪 gesagt?")
     if 'cookie' in message.content:
         await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
-    await client.process_commands(message)
+
 
     if message.content.lower ().startswith ("Vote"):
         botmsg = await client.send_message (message.channel, "👍 oder 👎")
@@ -155,7 +155,7 @@ async def on_message(message):
         await client.add_reaction (botmsg, "👍")
         await client.add_reaction (botmsg, "👎")
 
-
+    await client.process_commands(message)
 
 
 @client.command(name='ask',
