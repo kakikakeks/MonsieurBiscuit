@@ -154,6 +154,11 @@ async def on_message(message):
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
 
+    if message.content.startswith("Vote"):
+
+        await client.add_reaction(message, "👍")
+        await client.add_reaction(message, "👎")
+
     await client.process_commands(message)
 
 
