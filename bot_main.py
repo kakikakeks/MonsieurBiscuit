@@ -1,8 +1,10 @@
 import random
 import asyncio
-import requests
 import discord
+
 import io
+import safygiphy
+import requests
 
 
 from discord import Game
@@ -12,6 +14,7 @@ from utilities import getTime
 
 
 
+g = safygiphy.Giphy()
 
 
 BOT_PREFIX = ("?","!")
@@ -19,6 +22,7 @@ TOKEN = "NDM4MzA1MTU0OTAzNTcyNDgx.DcCrjg.Nepb-KYFZNN7IxEOOlehxhD9SAI"
 WELCOME_CHANNEL_ID= "438361448679342088"
 CHANNEL_RULES= "<#438361448679342088>"
 REPORT_CHANNEL_ID= "438372634284130305"
+
 
 client = Bot(command_prefix=BOT_PREFIX)
 
@@ -35,38 +39,77 @@ async def frühstück(context):
     await client.say(context.message.author.mention + " is currently eating breakfast :french_bread: " )
 
 
-@client.command(name='langweilig',
-                description="langweilig",
-                brief="langweilig",
-                aliases=['boring'],
+@client.command(name='like',
+                description="Does Monsieur Biscuit likes you?",
+                brief="Does Monsieur Biscuit likes you?",
+                aliases=['likes'],
                 pass_context=True)
-
-async def langweilig(context):
-
-    await client.say(context.message.author.mention + " findet das interessant :thinking: " )
+async def like(context):
+    possible_responses = [
+        'I like you very much :hugging: ',
+        'I dont even know you enough to tell that',
+        'I like you, I hope its the same for you?',
+        'You are great I like you :blush: ',
+        'I will say nothing...',
+        'Why are you asking me that question?',
+        'I dont like you more if you keep asking that question over and over again',
+    ]
+    await client.say(context.message.author.mention + " " + random.choice(possible_responses) )
 
 
 @client.command(name='spaß',
                 description="spaß",
                 brief="spaß",
-                aliases=['fun'],
+                aliases=['spass'],
                 pass_context=True)
-
 async def ask(context):
 
     await client.say(context.message.author.mention + " macht gerade spaß :joy: :joy: :joy: ")
 
 
+@client.command(name='gif',
+                description="Search and Post Gif-Tag",
+                brief="Post random gif example: !gif hello",
+                aliases=['gifs'],
+                pass_context=True)
+async def gif(context):
+            gif_tag = context.message.content
+            rgif = g.random(tag=str(gif_tag))
+            response = requests.get(
+                str(rgif.get("data", {}).get('image_original_url')), stream=True
+            )
+            await client.send_file(context.message.channel, io.BytesIO(response.raw.read()), filename='video.gif')
+
+@client.command(name='fun',
+                description="Search and Post Fun-Gif",
+                brief="Post random fun gif",
+                pass_context=True)
+async def fun(context):
+            gif_tag = "fun"
+            rgif = g.random (tag=str (gif_tag))
+            response = requests.get (
+                str (rgif.get ("data", {}).get ('image_original_url')), stream=True
+            )
+            await client.send_file(context.message.channel, io.BytesIO (response.raw.read ()), filename='video.gif')
+
 
 @client.event
 async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
 
-    if 'kekse' in message.content:
-        await client.send_message(message.channel, "Whoot? Habe ich hier etwa :kakikaKekse: gehört? ")
-    if 'cookies' in message.content:
-        await client.send_message(message.channel, "Whooot? Did I hear :kakikaKekse:? ")
 
+
+    if 'keks' in message.content:
+        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand :kakikaKeks: gesagt?")
+    if 'cookie' in message.content:
+        await client.send_message (message.channel, ":thinking: Did anyone say :kakikaKeks: ?")
     await client.process_commands(message)
+
+
+
+
 
 
 @client.command(name='ask',
@@ -163,6 +206,11 @@ async def on_ready():
 
     await client.change_presence(game=Game(name="mit Keksen"))
 
+    print('Eingeloggt als')
+    print(client.user.name)
+    print(client.user.id)
+    print('-----------')
+
 
 @client.event
 async def on_member_join(member):
@@ -177,6 +225,8 @@ async def on_member_remove(member):
     message = '{0} has left us, for now...'
 
     await client.send_message(channel, message.format(member.mention))
+
+
 
 
 
