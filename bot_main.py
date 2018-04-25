@@ -137,16 +137,22 @@ async def on_message(message):
 
 
     if 'keks' in message.content:
-        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand <:kakikaKeks:438543579351351296> gesagt?")
+        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand :kakikaKeks: gesagt?")
     if 'cookie' in message.content:
-        await client.send_message (message.channel, ":thinking: Did anyone say <:kakikaKeks:438543579351351296> ?")
+        await client.send_message (message.channel, ":thinking: Did anyone say :kakikaKeks: ?")
     await client.process_commands(message)
 
 
-    # we do not want the bot to reply to itself
-    if message.author == client.user:
-        return
-    if ':EmojiName:' in message.content:
+    if ':kakikaKeks:' in message.content:
+        emoji = get(client.get_all_emojis(), name='kakikaKeks')
+        await client.add_reaction(message, emoji)
+    if ':kakikaKekse:' in message.content:
+        emoji = get(client.get_all_emojis(), name='kakikaKekse')
+        await client.add_reaction(message, emoji)
+    if ':BegWan:' in message.content:
+        emoji = get(client.get_all_emojis(), name='BegWan')
+        await client.add_reaction(message, emoji)
+    if ':kakikaKeks:' in message.content:
         emoji = get(client.get_all_emojis(), name='EmojiName')
         await client.add_reaction(message, emoji)
 
