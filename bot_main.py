@@ -1,6 +1,7 @@
 import random
 import asyncio
 import discord
+import os
 
 import io
 import safygiphy
@@ -18,10 +19,10 @@ g = safygiphy.Giphy()
 
 
 BOT_PREFIX = ("?","!")
-'''TOKEN="TOKEN"
-WELCOME_CHANNEL_ID="WELCOME_CHANNEL_ID"
-CHANNEL_RULES_ID="CHANNEL_RULES_ID"
-REPORT_CHANNEL_ID="REPORT_CHANNEL_ID"'''
+TOKEN= os.environ.get('TOKEN', None)
+WELCOME_CHANNEL_ID=os.environ.get('WELCOME_CHANNEL_ID', None)
+CHANNEL_RULES_ID=os.environ.get('CHANNEL_RULES_ID',None)
+REPORT_CHANNEL_ID=os.environ.get('REPORT_CHANNEL_ID',None)
 
 CHANNEL_RULES= "<#"+CHANNEL_RULES_ID+">"
 
