@@ -91,7 +91,14 @@ async def ask(context):
 
     await client.say(context.message.author.mention + " macht gerade spaß :joy: :joy: :joy: ")
 
+@client.command(name='hello',
+                description="hello",
+                brief="hello",
+                aliases=['hallo', 'huhu', 'moin', 'morgen', 'nabend', 'abend'],
+                pass_context=True)
+async def hello(context):
 
+    await client.say("Hello " + context.message.author.mention)
 
 @client.command(name='calm',
                 description="tell people to calm down",
