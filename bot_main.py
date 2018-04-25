@@ -1,0 +1,185 @@
+import random
+import asyncio
+import requests
+import discord
+import io
+
+
+from discord import Game
+from discord.ext.commands import Bot
+from utilities import getTime
+
+
+
+
+
+
+BOT_PREFIX = ("?","!")
+TOKEN = "NDM4MzA1MTU0OTAzNTcyNDgx.DcCrjg.Nepb-KYFZNN7IxEOOlehxhD9SAI"
+WELCOME_CHANNEL_ID= "438361448679342088"
+CHANNEL_RULES= "<#438361448679342088>"
+REPORT_CHANNEL_ID= "438372634284130305"
+
+client = Bot(command_prefix=BOT_PREFIX)
+
+
+
+@client.command(name='frühstück',
+                description="Tell that you have breakfast",
+                brief="Tell about your breakfast",
+                aliases=['breakfast'],
+                pass_context=True)
+
+async def frühstück(context):
+
+    await client.say(context.message.author.mention + " is currently eating breakfast :french_bread: " )
+
+
+@client.command(name='langweilig',
+                description="langweilig",
+                brief="langweilig",
+                aliases=['boring'],
+                pass_context=True)
+
+async def langweilig(context):
+
+    await client.say(context.message.author.mention + " findet das interessant :thinking: " )
+
+
+@client.command(name='spaß',
+                description="spaß",
+                brief="spaß",
+                aliases=['fun'],
+                pass_context=True)
+
+async def ask(context):
+
+    await client.say(context.message.author.mention + " macht gerade spaß :joy: :joy: :joy: ")
+
+
+
+@client.event
+async def on_message(message):
+
+    if 'kekse' in message.content:
+        await client.send_message(message.channel, "Whoot? Habe ich hier etwa :kakikaKekse: gehört? ")
+    if 'cookies' in message.content:
+        await client.send_message(message.channel, "Whooot? Did I hear :kakikaKekse:? ")
+
+    await client.process_commands(message)
+
+
+@client.command(name='ask',
+                description="Answer yes/no question",
+                brief="Monsieur answers yes or no questions",
+                aliases=['question'],
+                pass_context=True)
+
+async def ask(context):
+    possible_responses = [
+        'This is unlikely',
+        'That will not happen',
+        'Of course',
+        'Yes',
+        'No',
+        'Maybe',
+    ]
+    await client.say(random.choice(possible_responses) + " " + context.message.author.mention)
+
+@client.command(name='remind',
+                description="Reminds you on tasks, Example: !remind Homework 1h, can only have 1 word for task",
+                brief="Example: !remind Homework 1h",
+                aliases=['reminder'],
+                pass_context=True)
+async def remind(ctx):
+
+    getTime()
+    args=ctx.message.content
+    args=args.split(' ')
+    try:
+        if 's' in args[2]:
+            time=int(args[2].replace('s', ''))
+            await client.say(f"Ok, I will remind you in {str(args[2].replace('s',''))} seconds to: {str(args[1])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[1])} {str(time)} seconds from {str(getTime())}")
+        if 'm' in args[2]:
+            time = int(args[2].replace('m', ''))*60
+            await client.say(f"Ok, I will remind you in {str(args[2].replace('m',''))} minutes to: {str(args[1])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[1])} {str(time/60)} minutes from {str(getTime())}")
+        if 'h' in args[2]:
+            time = int(args[2].replace('h', ''))*3600
+            await client.say(f"Ok, I will remind you in {str(args[2].replace('h',''))} hours to: {str(args[1])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[1])} {str(time/3600)} hours from {str(getTime())}")
+
+        if 's' in args[1]:
+            time=int(args[1].replace('s', ''))
+            await client.say(f"Ok, I will remind you in {str(args[1].replace('s',''))} seconds to: {str(args[2])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[2])} {str(time)} seconds from {str(getTime())}")
+        if 'm' in args[1]:
+            time = int(args[1].replace('m', ''))*60
+            await client.say(f"Ok, I will remind you in {str(args[1].replace('m',''))} minutes to: {str(args[2])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[2])} {str(time/60)} minutes from {str(getTime())}")
+        if 'h' in args[1]:
+            time = int(args[1].replace('h', ''))*3600
+            await client.say(f"Ok, I will remind you in {str(args[1].replace('h',''))} hours to: {str(args[2])}")
+            await asyncio.sleep(time)
+            await client.send_message(ctx.message.author,f"You asked to remind you to: {str(args[2])} {str(time/3600)} hours from {str(getTime())}")
+
+
+
+    except:
+        pass
+
+
+
+
+
+
+@client.command(name='warn',
+                description="warn someone and tell there are rules",
+                brief="Report a user with !warn @user1",
+                aliases=['report'],
+                pass_context=True)
+async def warn(ctx, userName: discord.User):
+    """Warn User"""
+    report_msg= userName.mention + " you have been warned! Make sure you read the rules at" + CHANNEL_RULES
+    await client.say(report_msg)
+    await client.send_message(userName.server.get_channel(REPORT_CHANNEL_ID), userName.mention + " has been reported!")
+
+
+
+
+
+
+
+
+
+@client.event
+async def on_ready():
+
+    await client.change_presence(game=Game(name="mit Keksen"))
+
+
+@client.event
+async def on_member_join(member):
+    channel = member.server.get_channel(WELCOME_CHANNEL_ID)
+    message = 'Herzlich Willkommen/Welcome {0} Please read the rules in '+ CHANNEL_RULES + ' Call me if you need **!help** :blush:'
+
+    await client.send_message(channel, message.format(member.mention))
+
+@client.event
+async def on_member_remove(member):
+    channel = member.server.get_channel(WELCOME_CHANNEL_ID)
+    message = '{0} has left us, for now...'
+
+    await client.send_message(channel, message.format(member.mention))
+
+
+
+
+
+client.run(TOKEN)
