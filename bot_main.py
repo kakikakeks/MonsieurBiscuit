@@ -18,11 +18,13 @@ g = safygiphy.Giphy()
 
 
 BOT_PREFIX = ("?","!")
-TOKEN = ""
-"""WELCOME_CHANNEL_ID= ""
-CHANNEL_RULES_ID="" """
+#TOKEN
+#WELCOME_CHANNEL_ID
+#CHANNEL_RULES_ID
+#REPORT_CHANNEL_ID
+
 CHANNEL_RULES= "<#"+CHANNEL_RULES_ID+">"
-"""REPORT_CHANNEL_ID= "" """
+
 
 
 client = Bot(command_prefix=BOT_PREFIX)
