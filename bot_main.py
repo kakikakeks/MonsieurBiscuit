@@ -91,6 +91,16 @@ async def ask(context):
     await client.say(context.message.author.mention + " macht gerade spaß :joy: :joy: :joy: ")
 
 
+
+@client.command(name='calm',
+                description="tell people to calm down",
+                brief="calm down",
+                aliases=['ruhig', 'ganzruhig','calmdown'],
+                pass_context=True)
+async def calm(context):
+
+    await client.say("I get :crying_cat_face: if people are :angry: . Please make me happy again :BegWan: ")
+
 @client.command(name='gif',
                 description="Search and Post Gif-Tag",
                 brief="Post random gif example: !gif hello",
