@@ -20,7 +20,8 @@ g = safygiphy.Giphy()
 BOT_PREFIX = ("?","!")
 TOKEN = ""
 WELCOME_CHANNEL_ID= ""
-CHANNEL_RULES= "<#>"
+CHANNEL_RULES_ID=""
+CHANNEL_RULES= "<#"+CHANNEL_RULES_ID+">"
 REPORT_CHANNEL_ID= ""
 
 
@@ -35,8 +36,28 @@ client = Bot(command_prefix=BOT_PREFIX)
                 pass_context=True)
 
 async def frühstück(context):
-
-    await client.say(context.message.author.mention + " is currently eating breakfast :french_bread: " )
+    possible_responses1 = [
+        'a :kakikaKeks: ',
+        'a :croissant: ',
+        'a :chocolate_bar: ',
+        'some :bread: ',
+        'an :apple: ',
+        'a :french_bread: ',
+        'a :tea: ',
+        'a :green_apple: ',
+        'a :coffee: ',
+    ]
+    possible_responses2 = [
+        'with jelly ',
+        'with chocolate',
+        'with fruits',
+        'with :PJSalt:',
+        'with :PJSugar:',
+        'with something to drink',
+        'with chilli',
+        'with a :kiwi: ',
+    ]
+    await client.say(context.message.author.mention + " Let me bring you " + random.choice(possible_responses1) + " " + random.choice(possible_responses2))
 
 
 @client.command(name='like',
@@ -189,7 +210,7 @@ async def remind(ctx):
                 pass_context=True)
 async def warn(ctx, userName: discord.User):
     """Warn User"""
-    report_msg= userName.mention + " you have been warned! Make sure you read the rules at" + CHANNEL_RULES
+    report_msg= userName.mention + " you have been warned! Make sure you read the rules at" + CHANNEL_RULES + ":spy:"
     await client.say(report_msg)
     await client.send_message(userName.server.get_channel(REPORT_CHANNEL_ID), userName.mention + " has been reported!")
 
