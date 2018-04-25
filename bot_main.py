@@ -149,6 +149,12 @@ async def on_message(message):
         await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
     await client.process_commands(message)
 
+    if message.content.lower ().startswith ("Vote"):
+        botmsg = await client.send_message (message.channel, "👍 oder 👎")
+
+        await client.add_reaction (botmsg, "👍")
+        await client.add_reaction (botmsg, "👎")
+
 
 
 
