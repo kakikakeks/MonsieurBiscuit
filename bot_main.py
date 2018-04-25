@@ -11,6 +11,7 @@ import requests
 from discord import Game
 from discord.ext.commands import Bot
 from utilities import getTime
+from discord.utils import get
 
 
 
@@ -142,8 +143,12 @@ async def on_message(message):
     await client.process_commands(message)
 
 
-
-
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+    if ':EmojiName:' in message.content:
+        emoji = get(client.get_all_emojis(), name='EmojiName')
+        await client.add_reaction(message, emoji)
 
 
 @client.command(name='ask',
