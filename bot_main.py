@@ -55,8 +55,8 @@ async def frühstück(context):
         'with jelly ',
         'with chocolate',
         'with fruits',
-        'with :PJSalt:',
-        'with :PJSugar:',
+        'with Salt',
+        'with Sugar',
         'with something to drink',
         'with chilli',
         'with a :kiwi: ',
@@ -254,7 +254,7 @@ async def warn(ctx, userName: discord.User):
 @client.event
 async def on_ready():
 
-    await client.change_presence(game=Game(name="with cookies"))
+    await client.change_presence(game=Game(name="!help"))
 
     print('Eingeloggt als')
     print(client.user.name)
