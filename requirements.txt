@@ -1,5 +1,7 @@
 # List of required packages (Dependencies)
 discord.py
+safygiphy
+requests
 
 # If you need to specify a version
 #requests==3.6
