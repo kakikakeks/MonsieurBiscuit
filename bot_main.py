@@ -41,7 +41,7 @@ client = Bot(command_prefix=BOT_PREFIX)
 
 async def frühstück(context):
     possible_responses1 = [
-        'a :kakikaKeks: ',
+        'a 🍪 ',
         'a :croissant: ',
         'a :chocolate_bar: ',
         'some :bread: ',
@@ -100,7 +100,7 @@ async def ask(context):
                 pass_context=True)
 async def calm(context):
 
-    await client.say("I get :crying_cat_face: if people are :angry: . Please make me happy again :BegWan: ")
+    await client.say("I get :crying_cat_face: if people are :angry: . Please make me happy again :hugging: ")
 
 @client.command(name='gif',
                 description="Search and Post Gif-Tag",
@@ -137,24 +137,12 @@ async def on_message(message):
 
 
     if 'keks' in message.content:
-        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand :kakikaKeks: gesagt?")
+        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand 🍪 gesagt?")
     if 'cookie' in message.content:
-        await client.send_message (message.channel, ":thinking: Did anyone say :kakikaKeks: ?")
+        await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
     await client.process_commands(message)
 
 
-    if ':kakikaKeks:' in message.content:
-        emoji = get(client.get_all_emojis(), name='kakikaKeks')
-        await client.add_reaction(message, emoji)
-    if ':kakikaKekse:' in message.content:
-        emoji = get(client.get_all_emojis(), name='kakikaKekse')
-        await client.add_reaction(message, emoji)
-    if ':BegWan:' in message.content:
-        emoji = get(client.get_all_emojis(), name='BegWan')
-        await client.add_reaction(message, emoji)
-    if ':kakikaKeks:' in message.content:
-        emoji = get(client.get_all_emojis(), name='EmojiName')
-        await client.add_reaction(message, emoji)
 
 
 @client.command(name='ask',
