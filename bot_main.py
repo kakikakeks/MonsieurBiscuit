@@ -143,18 +143,18 @@ async def on_message(message):
 
 
 
-    if 'keks' in message.content:
-        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand 🍪 gesagt?")
-    if 'cookie' in message.content:
-        await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
+#    if 'keks' in message.content:
+#        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand 🍪 gesagt?")
+#    if 'cookie' in message.content:
+#        await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
 
 
-    if message.content.startswith("vote"):
+    if 'vote' in message.content:
 
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
 
-    if message.content.startswith("Vote"):
+    if 'Vote' in message.content:
 
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
