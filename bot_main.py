@@ -258,7 +258,7 @@ async def ban(ctx, userName2: discord.User):
 
             ban_msg = userName2.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
             await client.say(ban_msg)
-            await client.ban(userName2, delete_message_days=14)
+            await client.ban(userName2, delete_message_days=7)
             await client.unban(userName2.server, userName)
             print('Ban was executed!')
 
