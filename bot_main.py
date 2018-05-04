@@ -252,7 +252,12 @@ async def warn(ctx, userName: discord.User):
 async def ban(ctx, userName2: discord.User):
 
             if not perms.check(ctx.message.author, 2):
-            #if not ctx.message.author.roles
+
+                await client.say ("Your are not allowed to access this command!")
+                return
+
+            if perms.check(userName2, 2):
+
                 await client.say ("Your are not allowed to access this command!")
                 return
 
