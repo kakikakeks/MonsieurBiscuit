@@ -276,12 +276,12 @@ async def on_ready():
     print('-----------')
 
 
-# @client.event
-# async def on_member_join(member):
-#     channel = member.server.get_channel(WELCOME_CHANNEL_ID)
-#     message = 'Herzlich Willkommen/Welcome {0} Please read the rules in '+ CHANNEL_RULES + ' Call me if you need **!help** :blush:'
-#
-#     await client.send_message(channel, message.format(member.mention))
+@client.event
+async def on_member_join(member):
+    channel = member.server.get_channel(WELCOME_CHANNEL_ID)
+    message = 'Herzlich Willkommen/Welcome {0} Please read the rules in '+ CHANNEL_RULES + ' Call me if you need **!help** :blush:'
+
+    await client.send_message(channel, message.format(member.mention))
 
 # @client.event
 # async def on_member_remove(member):
