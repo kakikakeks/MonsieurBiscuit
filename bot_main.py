@@ -260,7 +260,7 @@ async def ban(ctx,userName: discord.User):
             await client.say(ban_msg)
             await client.ban(userName, delete_message_days=14)
             await client.unban(userName.server, userName)
-            await print('Ban was executed!')
+            print('Ban was executed!')
 
 
 
