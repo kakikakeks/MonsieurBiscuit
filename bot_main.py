@@ -249,16 +249,16 @@ async def warn(ctx, userName: discord.User):
                 brief="ban user",
                 aliases=['report'],
                 pass_context=True)
-async def ban(ctx,userName: discord.User):
+async def ban(ctx,userName2: discord.User):
 
             if not perms.check(ctx.message.author, 2):
                 await client.say (embed=Embed (color=discord.Color.red (),description="Your are not allowed to access this command!"))
                 return
 
-            ban_msg = userName.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
+            ban_msg = userName2.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
             await client.say(ban_msg)
-            await client.ban(userName, delete_message_days=14)
-            await client.unban(userName.server, userName)
+            await client.ban(userName2, delete_message_days=14)
+            await client.unban(userName2.server, userName)
             print('Ban was executed!')
 
 
