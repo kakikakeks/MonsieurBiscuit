@@ -251,8 +251,7 @@ async def warn(ctx, userName: discord.User):
                 pass_context=True)
 async def ban(ctx,userName: discord.User):
 
-        try:
-            if not perms.check (ctx.message.author, 2):
+            if not perms.check(ctx.message.author, 2):
                 await client.say (embed=Embed (color=discord.Color.red (),description="Your are not allowed to access this command!"))
                 return
 
