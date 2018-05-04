@@ -1,0 +1,10 @@
+{
+     "perms":
+            {
+              "lvl1": ["Twitch Subscriber"]
+              "lvl2": ["Mods"]
+              "lvl3": ["Admin"]
+            }
+
+
+}

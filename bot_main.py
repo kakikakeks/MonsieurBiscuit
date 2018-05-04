@@ -6,12 +6,13 @@ import os
 import io
 import safygiphy
 import requests
+import perms
 
 
 from discord import Game
 from discord.ext.commands import Bot
 from utilities import getTime
-from discord.utils import get
+
 
 
 
@@ -149,7 +150,7 @@ async def on_message(message):
 #        await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
 
 
-    if 'vote' in message.content:
+     if 'vote' in message.content:
 
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
@@ -245,8 +246,23 @@ async def warn(ctx, userName: discord.User):
 
 
 
+@client.command(name='ban',
+                description="ban user",
+                brief="ban user",
+                aliases=['report'],
+                pass_context=True)
+async def ban(ctx,userName: discord.User):
 
+        try:
+            if not perms.check (ctx.message.author, 2):
+                await client.say (embed=Embed (color=discord.Color.red (),description="Your are not allowed to access this command!"))
+                return
 
+            ban_msg = userName.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
+            await client.say(ban_msg)
+            await client.ban(userName, delete_message_days=14)
+            await client.unban(userName.server, userName)
+            await print('Ban was executed!')
 
 
 
