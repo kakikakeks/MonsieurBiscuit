@@ -1,8 +1,11 @@
 import json
 
 with open("settings.json") as file:
-    json.load(file)
+    settings= json.load(file)
 
+lvl1 = settings["perms"]["lvl1"]
+lvl2 = settings["perms"]["lvl2"]
+lvl3 = settings["perms"]["lvl3"]
 
 def get(memb):
     lvl=[0]
