@@ -249,7 +249,7 @@ async def warn(ctx, userName: discord.User):
                 brief="ban user",
                 aliases=['report'],
                 pass_context=True)
-async def ban(ctx,userName2: discord.User):
+async def ban(ctx, userName2: discord.User):
 
             if not perms.check(ctx.message.author, 2):
                 await client.say (embed=Embed (color=discord.Color.red (),description="Your are not allowed to access this command!"))
@@ -257,8 +257,8 @@ async def ban(ctx,userName2: discord.User):
 
             ban_msg = userName2.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
             await client.say(ban_msg)
-            await client.ban(userName2, delete_message_days=14)
-            await client.unban(userName2.server, userName)
+            await client.ban(userName2, delete_message_days=6)
+            #await client.unban(userName2.server, userName)
             print('Ban was executed!')
 
 
@@ -275,19 +275,19 @@ async def on_ready():
     print('-----------')
 
 
-@client.event
-async def on_member_join(member):
-    channel = member.server.get_channel(WELCOME_CHANNEL_ID)
-    message = 'Herzlich Willkommen/Welcome {0} Please read the rules in '+ CHANNEL_RULES + ' Call me if you need **!help** :blush:'
+# @client.event
+# async def on_member_join(member):
+#     channel = member.server.get_channel(WELCOME_CHANNEL_ID)
+#     message = 'Herzlich Willkommen/Welcome {0} Please read the rules in '+ CHANNEL_RULES + ' Call me if you need **!help** :blush:'
+#
+#     await client.send_message(channel, message.format(member.mention))
 
-    await client.send_message(channel, message.format(member.mention))
-
-@client.event
-async def on_member_remove(member):
-    channel = member.server.get_channel(WELCOME_CHANNEL_ID)
-    message = '{0} has left us, for now...'
-
-    await client.send_message(channel, message.format(member.mention))
+# @client.event
+# async def on_member_remove(member):
+#     channel = member.server.get_channel(WELCOME_CHANNEL_ID)
+#     message = '{0} has left us, for now...'
+#
+#     await client.send_message(channel, message.format(member.mention))
 
 
 
