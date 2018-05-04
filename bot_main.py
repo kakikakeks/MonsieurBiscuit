@@ -142,15 +142,13 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-
-
 #    if 'keks' in message.content:
 #        await client.send_message (message.channel, ":thinking: Hat hier etwa jemand 🍪 gesagt?")
 #    if 'cookie' in message.content:
 #        await client.send_message (message.channel, ":thinking: Did anyone say 🍪 ?")
 
 
-     if 'vote' in message.content:
+    if 'vote' in message.content:
 
         await client.add_reaction(message, "👍")
         await client.add_reaction(message, "👎")
