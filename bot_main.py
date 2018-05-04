@@ -258,7 +258,7 @@ async def ban(ctx, userName2: discord.User):
 
             if perms.check(userName2, 2):
 
-                await client.say ("Your are not allowed to access this command!")
+                await client.say ("Your are not allowed ban this user!")
                 return
 
             ban_msg = userName2.mention + " has been banned, due to violation of the rules in " + CHANNEL_RULES
